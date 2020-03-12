@@ -56,7 +56,18 @@ followersArray.forEach(element => {
 </div>
 
 */
+const mainCard = document.querySelector(".cards");
 
+axios
+  .get("https://api.github.com/users/Callisto1981")
+  .then(response => {
+    mainCard.append(cardData(response.data));
+  })
+  .catch(error => {
+    console.log("The data was not returned", error);
+  });
+
+function cardData(obj) {}
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
