@@ -25,6 +25,17 @@
 */
 
 const followersArray = [];
+followersArray.forEach(element => {
+  axios
+    .get(`https://api.github.com/users`)
+    .then(response => {
+      console.log(response.data);
+      mainCard.append(cardData(response.data));
+    })
+    .catch(error => {
+      console.log("error", error);
+    });
+});
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
