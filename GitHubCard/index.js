@@ -67,7 +67,15 @@ axios
     console.log("The data was not returned", error);
   });
 
-function cardData(obj) {}
+function cardData(obj) {
+  const card = document.createElement('div'),
+  image = document.createElement('img'),
+  info = document.createElement('div'),
+  name = document.createElement('h3'),
+  username = document.createElement('p'),
+  location = document.createElement('p'),
+  profile = document.createElement('p'),
+}
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
