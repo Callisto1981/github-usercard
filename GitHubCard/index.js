@@ -24,10 +24,16 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell"
+];
 followersArray.forEach(element => {
   axios
-    .get(`https://api.github.com/users`)
+    .get(`https://api.github.com/users/${element}`)
     .then(response => {
       console.log(response.data);
       mainCard.append(cardData(response.data));
@@ -64,18 +70,61 @@ axios
     mainCard.append(cardData(response.data));
   })
   .catch(error => {
-    console.log("The data was not returned", error);
+    //console.log("The data was not returned", error);
   });
 
 function cardData(obj) {
-  const card = document.createElement('div'),
-  image = document.createElement('img'),
-  info = document.createElement('div'),
-  name = document.createElement('h3'),
-  username = document.createElement('p'),
-  location = document.createElement('p'),
-  profile = document.createElement('p'),
+  const card = document.createElement("div"),
+    image = document.createElement("img"),
+    info = document.createElement("div"),
+    name = document.createElement("h3"),
+    username = document.createElement("p"),
+    location = document.createElement("p"),
+    profile = document.createElement("p"),
+    address = document.createElement("a"),
+    followers = document.createElement("p"),
+    following = document.createElement("p"),
+    bio = document.createElement("p");
+
+  image.src = obj.avatar_url;
+  name.textContent = obj.name;
+  username.textContent = obj.login;
+  location.textContent = "Location: " + obj.location;
+  profile.textContent = obj.profile;
+  address.textContent = "Location: " + obj.html_url;
+  followers.textContent = "Followers: " + obj.followers;
+  following.textContent = "Following: " + obj.following;
+  bio.textContent = "Bio: " + obj.bio;
+
+  card.classList.add("card");
+  image.classList.add("image");
+  info.classList.add("card-info");
+  name.classList.add("name");
+  username.classList.add("username");
+  location.classList.add("location");
+  profile.classList.add("profile");
+  address.classList.add("address");
+  followers.classList.add("followers");
+  following.classList.add("following");
+  bio.classList.add("bio");
+
+  card.append(image);
+  card.append(info);
+
+  info.append(name);
+  info.append(username);
+  info.append(location);
+  info.append(profile);
+
+  profile.append(address);
+
+  info.append(followers);
+  info.append(following);
+  info.append(bio);
+
+  return card;
 }
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
